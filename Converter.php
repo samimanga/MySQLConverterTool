@@ -404,11 +404,11 @@ class MySQLConverterTool_Converter
                 }
             }
             $ffile = $dir.'/'.$file;
-            if (is_dir($ffile)) {
+            if (is_dir($ffile) && !preg_match("/\b".basename(dirname(__FILE__))."\b/", $ffile)) {
                 $files = $this->getFilesOfDirectory($ffile, $file_pattern, $files);
             }
 
-            if (!is_file($ffile)) {
+            if (!is_file($ffile) && !preg_match("/\b".basename(dirname(__FILE__))."\b/", $ffile)) {
                 continue;
             }
 
